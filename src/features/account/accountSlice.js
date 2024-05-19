@@ -39,7 +39,7 @@ const accounSlice = createSlice({
   },
 });
 
-export const { withdraw, deposit, requestLoan, payLoan } = accounSlice.actions;
+export const { withdraw, requestLoan, payLoan } = accounSlice.actions;
 
 export default accounSlice.reducer;
 
@@ -74,21 +74,21 @@ export default accounSlice.reducer;
 //   }
 // };
 
-// export const deposit = (amount, currency) => {
-//   console.log(currency, amount);
-//   if (currency === "USD") return { type: "account/deposit", payload: amount };
+export const deposit = (amount, currency) => {
+  console.log(currency, amount);
+  if (currency === "USD") return { type: "account/deposit", payload: amount };
 
-//   return async function conversion(dispatch) {
-//     const res = await fetch(
-//       `https://api.frankfurter.app/latest?amount=${amount}&from=${currency}&to=USD`
-//     );
-//     const data = await res.json();
-//     const converted = data.rates.USD;
-//     console.log(converted);
+  return async function conversion(dispatch) {
+    const res = await fetch(
+      `https://api.frankfurter.app/latest?amount=${amount}&from=${currency}&to=USD`
+    );
+    const data = await res.json();
+    const converted = data.rates.USD;
+    console.log(converted);
 
-//     dispatch({ type: "account/deposit", payload: converted });
-//   };
-// };
+    dispatch({ type: "account/deposit", payload: converted });
+  };
+};
 // export const withdraw = (amount) => {
 //   return { type: "account/withdraw", payload: amount };
 // };
